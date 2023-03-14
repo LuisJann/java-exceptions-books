@@ -1,5 +1,7 @@
 package org.java.book;
 
+import java.util.Objects;
+
 public class Book {
     private String title;
     private int numPage;
@@ -11,6 +13,7 @@ public class Book {
     }
 
     public void setTitle(String title) {
+        if(Objects.equals(title, ""))throw new RuntimeException("Inserisci un titolo");
         this.title = title;
     }
 
@@ -19,6 +22,7 @@ public class Book {
     }
 
     public void setNumPage(int numPage) {
+        if(numPage <= 0)throw new IllegalArgumentException("Inserici un valore maggiore di 0");
         this.numPage = numPage;
     }
 
@@ -27,6 +31,7 @@ public class Book {
     }
 
     public void setAuthor(String author) {
+        if(Objects.equals(author, ""))throw new RuntimeException("Inserisci un autore");
         this.author = author;
     }
 
@@ -35,9 +40,16 @@ public class Book {
     }
 
     public void setEditor(String editor) {
+        if(Objects.equals(editor, ""))throw new RuntimeException("Inserisci un editore");
         this.editor = editor;
     }
-    public Book(String title, int numPage, String author, String editor) {
+    public Book(String title, int numPage, String author, String editor) throws RuntimeException {
+        if(Objects.equals(title, "") || Objects.equals(author, "") || Objects.equals(editor, "")) {
+            throw new RuntimeException("Stai inserendo valori vuoti");
+        }
+        if (numPage <= 0 ){
+            throw new IllegalArgumentException("Inserisci un valore maggiore di 0");
+        }
         this.title = title;
         this.numPage = numPage;
         this.author = author;
